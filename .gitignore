@@ -1,0 +1,7 @@
+*.o
+*.a
+*.elf
+
+compile/vn
+compile/version
+h/conf.h
