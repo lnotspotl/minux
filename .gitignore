@@ -5,3 +5,5 @@
 compile/vn
 compile/version
 h/conf.h
+build/
+.clangd
