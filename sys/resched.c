@@ -5,9 +5,13 @@
 #include <proc.h>
 #include <q.h>
 
-int current_sched_class = AGESCHED;
+int current_sched_class = XINUSCHED;
 extern int disable(short *);
 extern int restore(short *);
+
+LOCAL int resched_age();
+LOCAL int resched_linux();
+LOCAL int resched_xinu();
 
 unsigned long currSP;	/* REAL sp of current process */
 extern int ctxsw(int, int, int, int);
@@ -21,6 +25,19 @@ extern int ctxsw(int, int, int, int);
  */
 int resched()
 {
+	switch (getschedclass()) {
+		case AGESCHED:
+			return resched_age();
+		case LINUXSCHED:
+			return resched_linux();
+		case XINUSCHED:
+			return resched_xinu();
+		default:
+			return SYSERR; // should never happen
+	}
+}
+
+int resched_xinu() {
 	register struct	pentry	*optr;	/* pointer to old process entry */
 	register struct	pentry	*nptr;	/* pointer to new process entry */
 
@@ -52,18 +69,18 @@ int resched()
 	return OK;
 }
 
+int resched_linux() {
+	return OK;
+}
+
+int resched_age() {
+	return OK;
+}
 
 void setschedclass(int sched_class) {
-	STATWORD ps;
-	disable(ps);
 	current_sched_class = sched_class;
-	restore(ps);
 }
 
 int getschedclass() {
-	STATWORD ps;
-	disable(ps);
-	int ret = current_sched_class;
-	restore(ps);
-	return ret;
+	return current_sched_class;
 }

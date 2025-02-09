@@ -108,6 +108,7 @@ long sizmem();
 
 #define AGESCHED 1
 #define LINUXSCHED 2
+#define XINUSCHED 3
 
 #include <mem.h>
 
