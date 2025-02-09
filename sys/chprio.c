@@ -16,7 +16,7 @@ SYSCALL chprio(int pid, int newprio)
 	struct	pentry	*pptr;
 
 	disable(ps);
-	if (isbadpid(pid) || newprio<=0 ||
+	if (isbadpid(pid) || isbadprio(newprio) ||
 	    (pptr = &proctab[pid])->pstate == PRFREE) {
 		restore(ps);
 		return(SYSERR);
