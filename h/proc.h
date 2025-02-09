@@ -36,8 +36,11 @@
 					/*  is always eligible to run	*/
 #define	BADPID		-1		/* used when invalid pid needed	*/
 
-#define	isbadpid(x)	(x<=0 || x>=NPROC)
-#define isbadprio(x) (x <= 0 || x >= 100)
+#define	MINPRIO		1		/* minimum allowed priority	*/
+#define	MAXPRIO		99		/* maximum allowed priority	*/	
+
+#define	isbadpid(x)	((x) <= 0 || (x) >= NPROC)
+#define isbadprio(x) ((x) < MINPRIO || (x) > MAXPRIO)
 
 /* process table entry */
 

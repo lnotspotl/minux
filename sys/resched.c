@@ -5,6 +5,10 @@
 #include <proc.h>
 #include <q.h>
 
+int current_sched_class = AGESCHED;
+extern int disable(short *);
+extern int restore(short *);
+
 unsigned long currSP;	/* REAL sp of current process */
 extern int ctxsw(int, int, int, int);
 /*-----------------------------------------------------------------------
@@ -46,4 +50,20 @@ int resched()
 	
 	/* The OLD process returns here when resumed. */
 	return OK;
+}
+
+
+void setschedclass(int sched_class) {
+	STATWORD ps;
+	disable(ps);
+	current_sched_class = sched_class;
+	restore(ps);
+}
+
+int getschedclass() {
+	STATWORD ps;
+	disable(ps);
+	int ret = current_sched_class;
+	restore(ps);
+	return ret;
 }

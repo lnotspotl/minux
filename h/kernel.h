@@ -99,10 +99,15 @@ int main();
 int panic(char *msg);
 int ready(int pid, int resch);
 int resched();
+void setschedclass(int sched_class);
+int getschedclass();
 int set_evec(u_int xnum, u_long handler);
 void trap(int inum);
 int xdone();
 long sizmem();
+
+#define AGESCHED 1
+#define LINUXSCHED 2
 
 #include <mem.h>
 
