@@ -37,6 +37,7 @@
 #define	BADPID		-1		/* used when invalid pid needed	*/
 
 #define	isbadpid(x)	(x<=0 || x>=NPROC)
+#define isbadprio(x) (x <= 0 || x >= 100)
 
 /* process table entry */
 

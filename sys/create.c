@@ -39,7 +39,7 @@ SYSCALL create(procaddr,ssize,priority,name,nargs,args)
 	ssize = (int) roundew(ssize);
 	if (((saddr = (unsigned long *)getstk(ssize)) ==
 	    (unsigned long *)SYSERR ) ||
-	    (pid=newpid()) == SYSERR || priority < 1 ) {
+	    (pid=newpid()) == SYSERR || isbadprio(priority) ) {
 		restore(ps);
 		return(SYSERR);
 	}
