@@ -48,7 +48,8 @@ SYS =	blkcmp.c	blkequ.c	main.c		stacktrace.c	\
 	signal.c	signaln.c	sleep.c		sleep10.c	\
 	sleep100.c	sleep1000.c	sreset.c	suspend.c	\
 	unsleep.c	userret.c	wait.c		wakeup.c	\
-	write.c		xdone.c		pci.c		shutdown.c
+	write.c		xdone.c		pci.c		shutdown.c \
+	printq.c
 
 TTY =	ttyalloc.c	ttycntl.c	ttygetc.c	ttyiin.c	\
 	ttyinit.c	ttynew.c	ttyopen.c	ttyputc.c	\
@@ -146,6 +147,9 @@ clkint.o: ../sys/clkint.S
 
 ctxsw.o: ../sys/ctxsw.S
 	${CPP} ${SDEFS} ../sys/ctxsw.S | ${AS} ${ASFLAGS} -o ctxsw.o
+
+printq.o: ../sys/printq.c
+	${CC} ${CFLAGS} ../sys/printq.c -o printq.o
 
 ethint.o: ../mon/ethint.S
 	${CPP} ${SDEFS} ../mon/ethint.S | ${AS} ${ASFLAGS} -o ethint.o

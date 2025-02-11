@@ -36,7 +36,8 @@ extern	int	nextqueue;
 
 int enqueue(int item, int tail);
 int dequeue(int item);
-int printq(int head);
+int printq(int head, int tail);
+int printq_every_n(int head, int tail, int n);
 int newqueue();
 int insertd(int pid, int head, int key);
 int insert(int proc, int head, int key);
