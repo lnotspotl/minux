@@ -64,6 +64,8 @@ struct	pentry	{
 	int	fildes[_NFILE];		/* file - device translation	*/
 	int	ppagedev;		/* pageing dgram device		*/
 	int	pwaitret;
+	int counter; // linux based scheduler counter
+	int quantum; // linux based scheduler quantum
 };
 
 
