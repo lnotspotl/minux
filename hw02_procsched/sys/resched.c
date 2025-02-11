@@ -51,6 +51,8 @@ int resched_age() {
     }
 
     // Increment priority and project it to valid range
+    // Note that this won't change the order in the queue as all the keys
+    // are incremented by the same amount
     q[pid].qkey = project_priority(q[pid].qkey + 2, MINPRIO, MAXPRIO);
   }
 
