@@ -1,0 +1,33 @@
+
+
+1. What is the difference in stack top address before and after calling printtos()?
+   Draw a diagram to illustrate what are the contents of the items pushed into the stack between these two time points.
+
+    Before: EAX, ECX, EDX, Arg N, Arg N-1, ... Arg 1, Arg 1, Return Address, [CALL HAPPENS HERE]
+     After: EAX, ECX, EDX, Arg N, Arg N-1, ... Arg 1, Arg 1, Return Address, EBP, EBX, ESI, EDI, Local Variable 1, Local Variable 2, ... Local Variable K
+
+2. Which byte order is adopted in the host machine that we are using? How did you find out?
+
+```
+int a = 1;
+bool is_little_endian = (a & 0xFF) == 1; // Stores lowest bits on the left
+bool is_big_endian = (a & 0xFF) == 0; // Stores highest bits on the left
+
+if (is_little_endian) {
+    printf("Little endian\n");
+} else if (is_big_endian) {
+    printf("Big endian\n");
+}
+```
+
+Based on the output, we can see that the host machine is little endian.
+This is supported by the fact that in `conf.h`, `BYTE_ORDER` is defined as `LITTLE_ENDIAN`.
+
+
+3.Briefly describe the mov, push, pusha, pop, and popa instructions in the x86.
+
+- mov: move data from one location to another
+- push: push data onto the stack
+- pusha: push all general-purpose registers onto the stack
+- pop: pop data from the stack, store in a register
+- popa: pop all general-purpose registers from the stack, store values in those registers
