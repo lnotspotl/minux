@@ -39,6 +39,7 @@ TTY2		is tty		on HARDWARE
 
 #define	NPROC	    50			/* number of user processes	*/
 #define	NSEM	    100			/* number of semaphores		*/
+#define	NLOCK	    50			/* number of locks		*/
 #define	MEMMARK				/* define if memory marking used*/
 #define	RTCLOCK				/* now have RTC support		*/
 #define	STKCHK				/* resched checks stack overflow*/

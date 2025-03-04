@@ -8,6 +8,7 @@
 #include <io.h>
 #include <q.h>
 #include <stdio.h>
+#include <lock.h>
 
 /*------------------------------------------------------------------------
  * kill  --  kill a process and remove it from the system
@@ -39,6 +40,25 @@ SYSCALL kill(int pid)
 	
 	send(pptr->pnxtkin, pid);
 
+	for (int i = 0; i < NLOCKS; i++) {
+		if (locks[i].state == LOCK_USED && locks[i].process_is_holding[pid]) {
+			locks[i].process_is_holding[pid] = FALSE;
+			locks[i].num_holding_processes--;
+			process_locking_infos[pid].lock_descriptor = -1;
+		}
+	}
+
+	int original_state = pptr->pstate;
+	pptr->pstate = PRFREE;
+
+	LOCK_DEBUG_PRINT("Restoring priority inheritance %d", 1);
+	restore_priority_inheritance();
+	LOCK_DEBUG_PRINT("Running priority inheritance algorithm %d", 1);
+	run_priority_inheritance();
+
+	pptr->pstate = original_state;
+
+	
 	freestk(pptr->pbase, pptr->pstklen);
 	switch (pptr->pstate) {
 

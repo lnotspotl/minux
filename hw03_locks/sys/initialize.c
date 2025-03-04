@@ -13,6 +13,7 @@
 #include <q.h>
 #include <io.h>
 #include <stdio.h>
+#include <lock.h>
 
 /*#define DETAIL */
 #define HOLESIZE	(600)	
@@ -197,6 +198,9 @@ LOCAL int sysinit()
 	    init_dev(i);
 	}
 #endif
+
+	/* Initialize the readers/writer lock system */
+	linit();
 
 	return(OK);
 }

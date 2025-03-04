@@ -113,6 +113,7 @@ SYSCALL	freemem(struct mblock *block, unsigned size);
 INTPROC	wakeup();
 
 SYSCALL chprio(int pid, int newprio);
+SYSCALL chprio_clean(int pid, int newprio);
 SYSCALL getpid();
 SYSCALL getprio(int pid);
 SYSCALL	gettime(long *timvar);
@@ -134,7 +135,7 @@ SYSCALL	receive();
 SYSCALL	recvclr();
 SYSCALL	recvtim(int maxwait);
 SYSCALL	remove();
-SYSCALL	rename(char *old, char *new);
+SYSCALL	rename(char *old, char *newname);
 SYSCALL resume(int pid);
 SYSCALL scount(int sem);
 SYSCALL sdelete(int sem);

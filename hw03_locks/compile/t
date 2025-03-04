@@ -1,0 +1,27 @@
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+06FCAE00+06F0AE00 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM..pcibios_init : PCI BIOS revision 2.10 entry at 0xfd1d9
+pci_init: PCI BIOS initialization succeeded
+
+
+Xinu Version (CSC501 1-2017 base) #2 (kubjon@asus) Sat Mar 1 08:15:51 PM EST 2025
+
+16777216 bytes real mem
+111215 bytes Xinu code
+clock enabled
+
+Test 3: test the basic priority inheritence
+-start writer, then sleep 1s. lock granted to write (prio 20)
+  writer: to acquire lock
+  writer: acquired lock, sleep 10s
+-start reader A, then sleep 1s. reader A(prio 25) blocked on the lock
+  reader A: to acquire lock
+-start reader B, then sleep 1s. reader B(prio 30) blocked on the lock
+  reader B: to acquire lock
+-kill reader B, then sleep 1s
+Test 3 failed
